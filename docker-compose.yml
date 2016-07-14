@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build: ./revel/
+    command: go run src/github.com/naitsric/server-machinery/worker/worker.go
+    volumes:
+      - ~/go/src/:/root/go/src/
+      - ~/go/src/dev/:/root/go/src/dev/
+    ports:
+      - "9000:9000"
+    links:
+      - db
+  db:
+    image: redis
